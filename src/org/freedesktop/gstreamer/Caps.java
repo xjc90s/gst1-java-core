@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2009 Levente Farkas
  * Copyright (C) 2007 Wayne Meissner
  * Copyright (C) <2003> David A. Schleef <ds@schleef.org>
@@ -38,12 +38,12 @@ import static org.freedesktop.gstreamer.lowlevel.GstCapsAPI.GSTCAPS_API;
  * given pad can handle. They are also stored in the {@link Registry} along with
  * a description of the {@link Element}.
  * <p>
- * Caps are exposed on the element pads using the {@link Pad#getCaps} method.
- * This method describes the possible types that the pad can handle or produce
- * at runtime.
+ * Caps are exposed on the element pads using the {@link Pad#getAllowedCaps() }
+ * method. This method describes the possible types that the pad can handle or
+ * produce at runtime.
  * <p>
  * Caps are also attached to buffers to describe the content of the data pointed
- * to by the buffer with {@link Buffer#setCaps}. Caps attached to a
+ * to by the buffer with {@link Sample#setCaps}. Caps attached to a
  * {@link Buffer} allow for format negotiation upstream and downstream.
  * <p>
  * A Caps can be constructed with the following code fragment:

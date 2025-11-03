@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2021 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2016 Isaac Raño Jares
  * 
  * This file is part of gstreamer-java.
@@ -92,7 +92,7 @@ public class GSocket extends GObject {
     private static String extractAndClearError(GErrorStruct struct) {
         struct.read();
         String err = struct.getMessage();
-        GLIB_API.g_error_free(struct);
+        GLIB_API.g_error_free(struct.getPointer());
         return err;
     }
 

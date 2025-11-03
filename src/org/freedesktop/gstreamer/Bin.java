@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2021 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2016 Christophe Lafolet
  * Copyright (c) 2009 Levente Farkas
  * Copyright (C) 2007 Wayne Meissner
@@ -496,7 +496,7 @@ public class Bin extends Element {
 
     /**
      * Available details for pipeline graphs produced by
-     * {@link #debugToDotFile(int, java.lang.String, boolean)}
+     * {@link #debugToDotFile(java.util.EnumSet, java.lang.String)}
      */
     public static enum DebugGraphDetails implements NativeFlags<DebugGraphDetails> {
 

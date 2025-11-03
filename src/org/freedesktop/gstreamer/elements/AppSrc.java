@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2009 Andres Colubri
  * Copyright (c) 2008 Wayne Meissner
  * Copyright (C) 2007 David Schleef <ds@schleef.org>
@@ -23,6 +23,7 @@ package org.freedesktop.gstreamer.elements;
 
 import org.freedesktop.gstreamer.Buffer;
 import org.freedesktop.gstreamer.Caps;
+import org.freedesktop.gstreamer.Element;
 import org.freedesktop.gstreamer.lowlevel.GstAPI.GstCallback;
 import static org.freedesktop.gstreamer.lowlevel.AppAPI.APP_API;
 

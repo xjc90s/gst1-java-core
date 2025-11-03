@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2016 Christophe Lafolet
  * Copyright (c) 2010 DHoyt <david.g.hoyt@gmail.com>
  *
@@ -31,7 +31,6 @@ import org.freedesktop.gstreamer.glib.NativeEnum;
 import org.freedesktop.gstreamer.query.Query;
 import org.freedesktop.gstreamer.lowlevel.GValueAPI.GValueArray;
 import org.freedesktop.gstreamer.lowlevel.GstAPI.GstCallback;
-import org.freedesktop.gstreamer.glib.NativeFlags;
 import org.freedesktop.gstreamer.lowlevel.GType;
 import org.freedesktop.gstreamer.lowlevel.GValueAPI;
 
@@ -150,8 +149,8 @@ public class DecodeBin extends Bin {
      * pad is needed. {@link DecodeBin} will by default return an array with all
      * compatible factories, sorted by rank.
      * <p>
-     * If this function returns {@link Optional#EMPTY}, pad will be exposed as a
-     * final caps.
+     * If this function returns {@link Optional#empty()}, pad will be exposed as
+     * a final caps.
      * <p>
      * If this function returns an empty list, the pad will be considered as
      * having an unhandled type media type.
@@ -213,7 +212,7 @@ public class DecodeBin extends Bin {
          * @param pad the new Pad
          * @param caps the caps of the pad that cannot be resolved
          * @param factories A List of possible {@link ElementFactory} to use
-         * @return resorted list or {@link Optional#EMPTY}
+         * @return resorted list or {@link Optional#empty()}
          */
         public Optional<List<ElementFactory>> autoplugSort(
                 DecodeBin element, Pad pad, Caps caps, List<ElementFactory> factories);

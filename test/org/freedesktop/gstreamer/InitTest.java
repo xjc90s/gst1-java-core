@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2007 Wayne Meissner
  * 
  * This file is part of gstreamer-java.
@@ -47,7 +47,7 @@ public class InitTest {
             System.out.println("Expected init failure");
             System.out.println(ex);
         }
-        String[] args = Gst.init(available, "InitTest", "--gst-plugin-spew");
+        String[] args = Gst.init(available, "InitTest", "--gst-debug-no-color");
         assertTrue(args.length == 0);
         
         assertTrue(Gst.testVersion(available.getMajor(), available.getMinor()));

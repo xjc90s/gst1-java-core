@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2007 Wayne Meissner
  * 
  * This file is part of gstreamer-java.
@@ -20,6 +20,7 @@
 package org.freedesktop.gstreamer;
 
 import org.freedesktop.gstreamer.glib.NativeEnum;
+import org.freedesktop.gstreamer.message.Message;
 
 /**
  * The result values for a GstBusSyncHandler.

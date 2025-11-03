@@ -1,4 +1,5 @@
 /* 
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2009 Levente Farkas
  * Copyright (c) 2007 Wayne Meissner
  * 
@@ -108,7 +109,6 @@ public interface GlibAPI extends Library {
     int g_timeout_add_seconds(int interval, GSourceFunc function, Pointer data);
     GstAPI.GErrorStruct g_error_new(int quark, int code, String message);
     void g_error_free(Pointer error);
-    void g_error_free(GstAPI.GErrorStruct error);
     
     void g_source_remove(int id);
     void g_free(Pointer ptr);

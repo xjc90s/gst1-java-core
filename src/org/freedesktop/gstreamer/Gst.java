@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2020 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2018 Antonio Morales
  * Copyright (c) 2007 Wayne Meissner
  * 
@@ -358,7 +358,7 @@ public final class Gst {
         GErrorStruct struct = new GErrorStruct(errorPtr);
         struct.read();
         GError err = new GError(struct.getCode(), struct.getMessage());
-        GLIB_API.g_error_free(struct);
+        GLIB_API.g_error_free(errorPtr);
         return err;
     }
 
