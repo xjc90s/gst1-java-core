@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2019 Neil C Smith
+ * Copyright (C) 2025 Neil C Smith
  * Copyright (C) 2008 Wayne Meissner
  *
  * This file is part of gstreamer-java.
@@ -50,7 +50,7 @@ abstract class GErrorMessage extends Message {
             throw new NullPointerException("Could not parse message");
         }
         int code = err.code;
-        GLIB_API.g_error_free(err);
+        GLIB_API.g_error_free(err.getPointer());
         return code;
     }
     
@@ -65,7 +65,7 @@ abstract class GErrorMessage extends Message {
             throw new NullPointerException("Could not parse message");
         }
         String message = err.getMessage();
-        GLIB_API.g_error_free(err);
+        GLIB_API.g_error_free(err.getPointer());
         return message;
     }
 

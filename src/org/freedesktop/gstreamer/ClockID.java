@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2007 Wayne Meissner
  * 
  * This file is part of gstreamer-java.
@@ -57,7 +57,8 @@ public class ClockID extends RefCountedObject implements Comparable<ClockID> {
      * Compares this ClockID to another.
      *
      * @param other The other ClockID to compare to
-     * @return negative value if a < b; zero if a = b; positive value if a > b
+     * @return negative value if
+     * {@code a < b; zero if a = b; positive value if a > b}
      */
     @Override
     public int compareTo(ClockID other) {

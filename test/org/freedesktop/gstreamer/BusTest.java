@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2020 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2007 Wayne Meissner
  * 
  * This file is part of gstreamer-java.
@@ -145,7 +145,7 @@ public class BusTest {
         pipe.dispose();
         assertTrue("ERROR signal not received", signalFired.get());
         assertEquals("Incorrect source object on signal", pipe.src, signalSource.get());
-        GlibAPI.GLIB_API.g_error_free(msg);
+        GlibAPI.GLIB_API.g_error_free(msg.getPointer());
     }
 
     @Test
@@ -171,7 +171,7 @@ public class BusTest {
         pipe.dispose();
         assertTrue("WARNING signal not received", signalFired.get());
         assertEquals("Incorrect source object on signal", pipe.src, signalSource.get());
-        GlibAPI.GLIB_API.g_error_free(msg);
+        GlibAPI.GLIB_API.g_error_free(msg.getPointer());
     }
 
     @Test
@@ -197,7 +197,7 @@ public class BusTest {
         pipe.dispose();
         assertTrue("INFO signal not received", signalFired.get());
         assertEquals("Incorrect source object on signal", pipe.src, signalSource.get());
-        GlibAPI.GLIB_API.g_error_free(msg);
+        GlibAPI.GLIB_API.g_error_free(msg.getPointer());
     }
 
     @Test

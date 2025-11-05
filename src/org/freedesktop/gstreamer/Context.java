@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2019 Christophe Lafolet
  * 
  * This file is part of gstreamer-java.
@@ -54,7 +55,7 @@ import org.freedesktop.gstreamer.lowlevel.GstContextPtr;
  * application should provide one if it can.
  * <p>
  * Contexts can be persistent. A persistent context is kept in elements when
- * they reach {@lin State#NULL}, non-persistent ones will be removed. Also, a
+ * they reach {@link State#NULL}, non-persistent ones will be removed. Also, a
  * non-persistent context won't override a previous persistent context set to an
  * element.
  */

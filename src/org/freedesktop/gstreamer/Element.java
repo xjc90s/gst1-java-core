@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2021 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2019 Christophe Lafolet
  * Copyright (c) 2009 Levente Farkas
  * Copyright (C) 2007 Wayne Meissner
@@ -61,9 +61,6 @@ import static org.freedesktop.gstreamer.lowlevel.GObjectAPI.GOBJECT_API;
  * (or source) pads. Core and plug-in writers can add and remove pads with
  * {@link #addPad} and {@link #removePad}.
  * <p>
- * A pad of an element can be retrieved by name with {@link #getPad}. An list of
- * all pads can be retrieved with {@link #getPads}.
- * <p>
  * Elements can be linked through their pads. If the link is straightforward,
  * use the {@link #link} convenience function to link two elements, or
  * {@link #linkMany} for more elements in a row.
@@ -109,16 +106,16 @@ public class Element extends GstObject {
      * destination; the other direction will not be tried.
      * <p>
      * The function looks for existing pads that aren't linked yet. It will
-     * request new pads if necessary. Such pads need to be released manualy when
-     * unlinking. If multiple links are possible, only one is established.
+     * request new pads if necessary. Such pads need to be released manually
+     * when unlinking. If multiple links are possible, only one is established.
      * <p>
      * Make sure you have added your elements to a bin or pipeline with
      * {@link Bin#add} or {@link Bin#addMany} before trying to link them.
      * <p>
-     * See {@link Element#linkPadsFiltered} if you need more control about
-     * which pads are selected for linking.
+     * See {@link #linkPadsFiltered} if you need more control about which pads
+     * are selected for linking.
      *
-     * @param dest The {@link Element} containing the destination pad.
+     * @param dest The element containing the destination pad.
      * @return true if the elements could be linked, false otherwise.
      */
     public boolean link(Element dest) {
@@ -127,20 +124,20 @@ public class Element extends GstObject {
 
     /**
      * Links this element to another element using the given caps as filtercaps.
-     * The link must be from source to destination; the other direction will
-     * not be tried.
+     * The link must be from source to destination; the other direction will not
+     * be tried.
      * <p>
      * The function looks for existing pads that aren't linked yet. It will
-     * request new pads if necessary. Such pads need to be released manualy when
-     * unlinking. If multiple links are possible, only one is established.
+     * request new pads if necessary. Such pads need to be released manually
+     * when unlinking. If multiple links are possible, only one is established.
      * <p>
      * Make sure you have added your elements to a bin or pipeline with
      * {@link Bin#add} or {@link Bin#addMany} before trying to link them.
      * <p>
-     * See {@link Element#linkPadsFiltered} if you need more control about
-     * which pads are selected for linking.
+     * See {@link #linkPadsFiltered} if you need more control about which pads
+     * are selected for linking.
      *
-     * @param dest The {@link Element} containing the destination pad.
+     * @param dest The element containing the destination pad.
      * @param filter The {@link Caps} to filter the link, or Null for no filter.
      * @return true if the elements could be linked, false otherwise.
      */
@@ -148,23 +145,6 @@ public class Element extends GstObject {
         return GSTELEMENT_API.gst_element_link_filtered(this, dest, filter);
     }
 
-
-//    /**
-//     * Chain together a series of elements, with this element as the first in the list. 
-//     * <p>
-//     * Make sure you have added your elements to a bin or pipeline with
-//     * {@link Bin#add} or {@link Bin#addMany} before trying to link them.
-//     *
-//     * @param elems The list of elements to be linked.
-//     * @return true if the elements could be linked, false otherwise.
-//     */
-//    public boolean link(Element... elems) {
-//        // Its much more efficient to copy the array and let the native code do the linking
-//        Element[] list = new Element[elems.length + 1];
-//        list[0] = this;
-//        System.arraycopy(elems, 0, list, 1, elems.length);
-//        return linkMany(list);
-//    }
     /**
      * Unlinks all source pads of this source element with all sink pads of the
      * sink element to which they are linked.
@@ -222,8 +202,8 @@ public class Element extends GstObject {
     }
 
     /**
-     * Tells the Element to pause playing the media stream. Equivalent to
-     * calling {@link #setState(org.freedesktop.gstreamer.State)} with
+     * Tells the Element to stop playing the media stream. Equivalent to calling
+     * {@link #setState(org.freedesktop.gstreamer.State)} with
      * {@link State#NULL}.
      *
      * @return the status of the element's state change.
@@ -279,8 +259,8 @@ public class Element extends GstObject {
      * Gets the state of the element.
      * <p>
      * For elements that performed an ASYNC state change, as reported by
-     * {@link #setState}, this function will block up to the specified timeout
-     * value for the state change to complete.
+     * {@link #setState(org.freedesktop.gstreamer.State)}, this function will
+     * block up to the specified timeout value for the state change to complete.
      *
      * @param timeout the amount of time to wait.
      * @param units the units of the <tt>timeout</tt>.
@@ -297,8 +277,8 @@ public class Element extends GstObject {
      * Gets the state of the element.
      * <p>
      * For elements that performed an ASYNC state change, as reported by
-     * {@link #setState}, this function will block up to the specified timeout
-     * value for the state change to complete.
+     * {@link #setState(org.freedesktop.gstreamer.State)}, this function will
+     * block up to the specified timeout value for the state change to complete.
      *
      * @param timeout The amount of time in nanoseconds to wait.
      * @return The {@link State} the Element is currently in.
@@ -314,13 +294,12 @@ public class Element extends GstObject {
      * Gets the state of the element.
      * <p>
      * For elements that performed an ASYNC state change, as reported by
-     * {@link #setState}, this function will block up to the specified timeout
-     * value for the state change to complete.
+     * {@link #setState(org.freedesktop.gstreamer.State)}, this function will
+     * block up to the specified timeout value for the state change to complete.
      *
      * @param timeout The amount of time in nanoseconds to wait.
      * @param states an array to store the states in. Must be of sufficient size
      * to hold two elements.
-     *
      */
     public void getState(long timeout, State[] states) {
         State[] state = new State[1];
@@ -387,7 +366,7 @@ public class Element extends GstObject {
     public List<Pad> getSinkPads() {
         return padList(GSTELEMENT_API.gst_element_iterate_sink_pads(this));
     }
-    
+
     private List<Pad> padList(GstIteratorPtr iter) {
         return GstIterator.asList(iter, Pad.class);
     }
@@ -489,7 +468,7 @@ public class Element extends GstObject {
     }
 
     /**
-     * Signal emitted when an {@link Pad} is added to this {@link Element}
+     * Signal emitted when an {@link Pad} is added to this element.
      *
      * @see #connect(PAD_ADDED)
      * @see #disconnect(PAD_ADDED)
@@ -506,7 +485,7 @@ public class Element extends GstObject {
     }
 
     /**
-     * Signal emitted when an {@link Pad} is removed from this {@link Element}
+     * Signal emitted when an {@link Pad} is removed from this element.
      *
      * @see #connect(PAD_REMOVED)
      * @see #disconnect(PAD_REMOVED)
@@ -523,8 +502,7 @@ public class Element extends GstObject {
     }
 
     /**
-     * Signal emitted when this {@link Element} ceases to generated dynamic
-     * pads.
+     * Signal emitted when this element ceases to generated dynamic pads.
      *
      * @see #connect(NO_MORE_PADS)
      * @see #disconnect(NO_MORE_PADS)
@@ -532,7 +510,7 @@ public class Element extends GstObject {
     public static interface NO_MORE_PADS {
 
         /**
-         * Called when an {@link Element} ceases to generated dynamic pads.
+         * Called when an element ceases to generated dynamic pads.
          *
          * @param element the element which posted this message.
          */
@@ -543,7 +521,7 @@ public class Element extends GstObject {
      * Add a listener for the <code>pad-added</code> signal
      *
      * @param listener Listener to be called when a {@link Pad} is added to the
-     * {@link Element}.
+     * element.
      */
     public void connect(final PAD_ADDED listener) {
         connect(PAD_ADDED.class, listener, new GstCallback() {
@@ -567,7 +545,7 @@ public class Element extends GstObject {
      * Add a listener for the <code>pad-added</code> signal
      *
      * @param listener Listener to be called when a {@link Pad} is removed from
-     * the {@link Element}.
+     * the element.
      */
     public void connect(final PAD_REMOVED listener) {
         connect(PAD_REMOVED.class, listener, new GstCallback() {
@@ -590,8 +568,8 @@ public class Element extends GstObject {
     /**
      * Add a listener for the <code>no-more-pads</code> signal
      *
-     * @param listener Listener to be called when the {@link Element} will has
-     * finished generating dynamic pads.
+     * @param listener Listener to be called when the element has finished
+     * generating dynamic pads.
      */
     public void connect(final NO_MORE_PADS listener) {
         connect(NO_MORE_PADS.class, listener, new GstCallback() {
@@ -641,10 +619,10 @@ public class Element extends GstObject {
      * child of the parent of the other element. If they have different parents,
      * the link fails.
      *
-     * @param src The {@link Element} containing the source {@link Pad}.
+     * @param src The element containing the source {@link Pad}.
      * @param srcPadName The name of the source {@link Pad}. Can be null for any
      * pad.
-     * @param dest The {@link Element} containing the destination {@link Pad}.
+     * @param dest The element containing the destination {@link Pad}.
      * @param destPadName The name of the destination {@link Pad}. Can be null
      * for any pad.
      *
@@ -661,10 +639,10 @@ public class Element extends GstObject {
      * fails. If caps is not null, makes sure that the caps of the link is a
      * subset of caps.
      *
-     * @param src The {@link Element} containing the source {@link Pad}.
+     * @param src The element containing the source {@link Pad}.
      * @param srcPadName The name of the source {@link Pad}. Can be null for any
      * pad.
-     * @param dest The {@link Element} containing the destination {@link Pad}.
+     * @param dest The element containing the destination {@link Pad}.
      * @param destPadName The name of the destination {@link Pad}. Can be null
      * for any pad.
      * @param caps The {@link Caps} to use to filter the link.
@@ -679,9 +657,9 @@ public class Element extends GstObject {
     /**
      * Unlink source and destination pads of two elements.
      *
-     * @param src The {@link Element} containing the source {@link Pad}.
+     * @param src The element containing the source {@link Pad}.
      * @param srcPadName The name of the source {@link Pad}.
-     * @param dest The {@link Element} containing the destination {@link Pad}.
+     * @param dest The element containing the destination {@link Pad}.
      * @param destPadName The name of the destination {@link Pad}.
      *
      */
@@ -752,7 +730,7 @@ public class Element extends GstObject {
      *
      * Toplevel elements like GstPipeline will manage the start_time and
      * base_time on its children. Setting the start_time to
-     * {@link long#NONE} on such a toplevel element will disable the
+     * {@link ClockTime#NONE} on such a toplevel element will disable the
      * distribution of the base_time to the children and can be useful if the
      * application manages the base_time itself, for example if you want to
      * synchronize capture from multiple pipelines, and you can also ensure that
@@ -823,7 +801,7 @@ public class Element extends GstObject {
         long[] dur = {0};
         return GSTELEMENT_API.gst_element_query_duration(this, format, dur) ? dur[0] : -1L;
     }
-    
+
     /**
      * Queries an element (usually top-level pipeline or playbin element) for
      * the stream position in nanoseconds. This will be a value between 0 and
@@ -839,7 +817,7 @@ public class Element extends GstObject {
         long[] pos = {0};
         return GSTELEMENT_API.gst_element_query_position(this, format, pos) ? pos[0] : -1L;
     }
-    
+
     /**
      * Sends a seek event to an element. See {@link SeekEvent} for the details
      * of the parameters. The seek event is sent to the element using the native
@@ -891,7 +869,7 @@ public class Element extends GstObject {
         return GSTELEMENT_API.gst_element_seek_simple(this, format,
                 NativeFlags.toInt(seekFlags), seekPosition);
     }
-    
+
     static class Handle extends GstObject.Handle {
 
         public Handle(GstObjectPtr ptr, boolean ownsHandle) {

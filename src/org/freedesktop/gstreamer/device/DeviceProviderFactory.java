@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (c) 2015 Andres Colubri <andres.colubri@gmail.com>
  * Copyright (C) 2013 Olivier Crete <olivier.crete@collabora.com>
  *
@@ -39,9 +39,9 @@ import org.freedesktop.gstreamer.lowlevel.GstPluginAPI;
  * DeviceProviderFactory is used to create instances of device providers. A
  * DeviceProviderfactory can be added to a Plugin as it is also a PluginFeature.
  *
- * Use the {@link #find(java.lang.String) and
- * {@link #get() } functions to create device provider
- * instances or use {@link #getByName(java.lang.String) } as a convenient
+ * Use the {@link #find(java.lang.String)} and
+ * {@link #get()} functions to create device provider
+ * instances or use {@link #getByName(java.lang.String)} as a convenient
  * shortcut.
  */
 public class DeviceProviderFactory extends GstObject {

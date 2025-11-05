@@ -1,5 +1,5 @@
 /* 
- * Copyright (c) 2020 Neil C Smith
+ * Copyright (c) 2025 Neil C Smith
  * Copyright (C) 2014 Tom Greenwood <tgreenwood@cafex.com>
  * Copyright (C) 2007 Wayne Meissner
  * Copyright (C) 2004 Wim Taymans <wim@fluendo.com>
@@ -33,6 +33,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
+import org.freedesktop.gstreamer.glib.GObject;
 import org.freedesktop.gstreamer.glib.NativeEnum;
 
 import org.freedesktop.gstreamer.glib.Natives;
@@ -766,9 +767,10 @@ public class Bus extends GstObject {
          * {@code percent} is a value between 0 and 100. A value of 100 means
          * that the buffering completed.
          * <p>
-         * When {@code percent} is < 100 the application should PAUSE a PLAYING
-         * pipeline. When {@code percent} is 100, the application can set the
-         * pipeline (back) to PLAYING. <p>
+         * When {@code percent} is less than 100 the application should PAUSE a
+         * PLAYING pipeline. When {@code percent} is 100, the application can
+         * set the pipeline (back) to PLAYING.
+         * <p>
          * The application must be prepared to receive BUFFERING messages in the
          * PREROLLING state and may only set the pipeline to PLAYING after
          * receiving a message with {@code percent} set to 100, which can happen
